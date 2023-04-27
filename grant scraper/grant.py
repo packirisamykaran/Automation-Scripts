@@ -1,9 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
 
-URL = "https://realpython.github.io/fake-jobs/"
+URL = "https://www.blockchaingrants.org/"
 page = requests.get(URL)
 
 soup = BeautifulSoup(page.content, "html.parser")
 
-print(soup)
+
+print(page.text)
