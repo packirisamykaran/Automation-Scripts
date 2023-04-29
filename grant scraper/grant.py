@@ -2,7 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
-
+import openpyxl
+import csv
 # instantiate options
 options = webdriver.ChromeOptions()
 
@@ -23,6 +24,10 @@ driver.get(url)
 # select elements by class name
 elements = driver.find_elements(By.CLASS_NAME, 'mYVXT')
 
+count = 1
+
+fields = ['company', 'link']
+rows = []
 # container = elements.find_elements(By.CLASS_NAME, "LS81yb")
 
 
@@ -36,10 +41,25 @@ for element in elements:
             heading = title.find_element(By.CLASS_NAME, 'XqQF9c')
             print(heading.text)
             print(heading.get_attribute('href'))
+            rows.append([heading.text, heading.get_attribute('href')])
+            # define the data rows
+
+            # write the data to a CSV file
+
+# create a new workbook
+
         except:
             continue
 
+with open('example.csv', 'w', newline='') as csvfile:
+    # create a CSV writer object
+    writer = csv.writer(csvfile)
 
+    # write the header row
+    writer.writerow(fields)
+
+    # write the data rows
+    writer.writerows(rows)
 # # load website
 # url = 'https://angular.io/'
 
