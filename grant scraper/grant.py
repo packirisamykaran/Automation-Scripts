@@ -31,9 +31,13 @@ for element in elements:
 
     for title in a:
         # select H2s, within element, by tag name
-        heading = title.find_element(By.CLASS_NAME, 'C9DxTc').text
-        # print H2s
-        print(heading)
+
+        try:
+            heading = title.find_element(By.CLASS_NAME, 'XqQF9c')
+            print(heading.text)
+            print(heading.get_attribute('href'))
+        except:
+            continue
 
 
 # # load website
